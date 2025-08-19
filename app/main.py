@@ -130,11 +130,17 @@ def main():
         )
 
         if current_env == "dev":
-            st.info("🔧 This is the development environment. New features are tested here.")
+            st.info(
+                "🔧 This is the development environment. New features are tested here."
+            )
         elif current_env == "qa":
-            st.warning("🧪 This is the QA environment. Features are validated here before production.")
+            st.warning(
+                "🧪 This is the QA environment. Features are validated here before production."
+            )
         elif current_env == "prod":
-            st.success("🚀 This is the production environment. Stable, tested features only.")
+            st.success(
+                "🚀 This is the production environment. Stable, tested features only."
+            )
 
     # Feature demonstration section
     st.header("🚀 Application Features")
@@ -178,6 +184,7 @@ def main():
     """,
         unsafe_allow_html=True,
     )
+
 
 if __name__ == "__main__":
     main()
