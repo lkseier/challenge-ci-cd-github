@@ -7,6 +7,29 @@ on:
       - qa       # Auto-deploy to QA  
       - main     # Deploy to Prod (with approval)
 
+build:
+  runs-on: ubuntu-latest
+  steps:
+  - uses: actions/checkout@v4
+  
+  - name: Set up Python
+    uses: actions/setup-python@v4
+    with:
+      python-version: '3.12.3'
+  
+  - name: Build application
+    run: |
+      echo "🔨 Building application..."
+      mkdir -p build
+      cp -r app build/
+      cp requirements.txt build/
+  
+  - name: Upload build artifacts
+    uses: actions/upload-artifact@v4
+    with:
+      name: build-artifacts
+      path: build/
+
 jobs:
   deploy-dev:
     if: github.ref == 'refs/heads/dev'
@@ -105,13 +128,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-artifacts
-        path: build/
-      continue-on-error: true
     
     - name: Set up Python
       uses: actions/setup-python@v4
