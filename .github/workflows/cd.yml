@@ -8,28 +8,6 @@ on:
       - main     # Deploy to Prod (with approval)
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12.3'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Build application
-      run: |
-        echo "🔨 Building application..."
-        mkdir -p build
-        cp -r app build/
-        echo "✅ Build completed successfully!"
-
-    
   deploy-dev:
     if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
