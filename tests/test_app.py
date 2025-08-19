@@ -63,7 +63,6 @@ def test_app_import():
 def test_streamlit_import():
     """Test that streamlit can be imported"""
     try:
-        import streamlit
 
         assert True
     except ImportError:

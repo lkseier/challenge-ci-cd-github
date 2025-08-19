@@ -48,11 +48,11 @@ def apply_custom_css(config):
         border-radius: 10px;
         margin: 1rem 0;
     }}
-    
+
     .stApp > header {{
         background-color: transparent;
     }}
-    
+
     .environment-header {{
         background-color: {config['bg_color']};
         color: {config['text_color']};
@@ -63,7 +63,7 @@ def apply_custom_css(config):
         font-weight: bold;
         font-size: 1.5rem;
     }}
-    
+
     .environment-info {{
         background-color: rgba(255, 255, 255, 0.1);
         padding: 1rem;
@@ -83,7 +83,12 @@ def main():
     config = get_environment_config(current_env)
 
     # Set page config
-    st.set_page_config(page_title=config["title"], page_icon=config["icon"], layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(
+        page_title=config["title"],
+        page_icon=config["icon"],
+        layout="wide",
+        initial_sidebar_state="expanded",
+    )
 
     # Apply custom styling
     apply_custom_css(config)
@@ -141,7 +146,10 @@ def main():
         if st.button("Generate Sample Data"):
             import random
 
-            data = {"Metric": ["Users", "Revenue", "Performance"], "Value": [random.randint(100, 1000) for _ in range(3)]}
+            data = {
+                "Metric": ["Users", "Revenue", "Performance"],
+                "Value": [random.randint(100, 1000) for _ in range(3)],
+            }
             st.table(data)
 
     with col2:
@@ -170,7 +178,6 @@ def main():
     """,
         unsafe_allow_html=True,
     )
-
 
 if __name__ == "__main__":
     main()
